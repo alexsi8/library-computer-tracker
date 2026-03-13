@@ -1,0 +1,407 @@
+:root {
+    --bg-main: #0b0e14;
+    --bg-glass: rgba(255, 255, 255, 0.03);
+    --border-glass: rgba(255, 255, 255, 0.08);
+    
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    
+    --accent-available: #4ade80;
+    --accent-available-dim: rgba(74, 222, 128, 0.15);
+    
+    --accent-inuse: #f87171;
+    --accent-inuse-dim: rgba(248, 113, 113, 0.15);
+    
+    --accent-offline: #64748b;
+    --accent-offline-dim: rgba(100, 116, 139, 0.15);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: var(--bg-main);
+    color: var(--text-primary);
+    min-height: 100vh;
+    overflow-x: hidden;
+    /* Soft ambient glow in the background */
+    background-image: 
+        radial-gradient(circle at 15% 50%, rgba(74, 222, 128, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 85% 30%, rgba(248, 113, 113, 0.03) 0%, transparent 50%);
+}
+
+.app-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+/* Glass Header */
+.glass-header {
+    background: var(--bg-glass);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 1.5rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    position: sticky;
+    top: 1rem;
+    z-index: 100;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-area h1 {
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    margin-bottom: 0.25rem;
+    background: linear-gradient(135deg, #fff 0%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.pulse-indicator {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-weight: 600;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background-color: var(--accent-available);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 var(--accent-available-dim); }
+    70% { box-shadow: 0 0 0 6px transparent; }
+    100% { box-shadow: 0 0 0 0 transparent; }
+}
+
+.icon-btn {
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+}
+
+.icon-btn:hover {
+    background: var(--bg-glass);
+    transform: translateY(-2px);
+}
+
+.icon-btn:active {
+    transform: translateY(0);
+}
+
+/* Stats */
+.stats-bar {
+    display: flex;
+    gap: 1rem;
+}
+
+.stat-pill {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    border: 1px solid var(--border-glass);
+}
+
+.stat-num {
+    font-size: 1.25rem;
+    font-weight: 800;
+}
+
+.status-available {
+    background: var(--accent-available-dim);
+    border-color: rgba(74, 222, 128, 0.2);
+}
+.status-available .stat-num { color: var(--accent-available); }
+
+.status-inuse {
+    background: var(--accent-inuse-dim);
+    border-color: rgba(248, 113, 113, 0.2);
+}
+.status-inuse .stat-num { color: var(--accent-inuse); }
+
+/* Dashboard */
+.grid-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.grid-header h2 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.glass-select {
+    background: var(--bg-glass);
+    color: var(--text-primary);
+    border: 1px solid var(--border-glass);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.9rem;
+    outline: none;
+    cursor: pointer;
+    backdrop-filter: blur(12px);
+}
+
+.glass-select option {
+    background: var(--bg-main);
+    color: var(--text-primary);
+}
+
+/* Grid Matrix */
+.computer-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+}
+
+.computer-card {
+    background: var(--bg-glass);
+    border: 1px solid var(--border-glass);
+    border-radius: 20px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    transition: var(--transition-smooth);
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.computer-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Subtle glow at the top based on status */
+.computer-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: transparent;
+    transition: var(--transition-smooth);
+}
+
+.computer-card[data-status="Available"]::before { background: var(--accent-available); }
+.computer-card[data-status="In-Use"]::before { background: var(--accent-inuse); }
+.computer-card[data-status="Offline"]::before { background: var(--accent-offline); }
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.pc-name {
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.status-badge {
+    padding: 0.4rem 0.75rem;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.computer-card[data-status="Available"] .status-badge {
+    background: var(--accent-available-dim);
+    color: var(--accent-available);
+    border: 1px solid rgba(74, 222, 128, 0.2);
+}
+
+.computer-card[data-status="In-Use"] .status-badge {
+    background: var(--accent-inuse-dim);
+    color: var(--accent-inuse);
+    border: 1px solid rgba(248, 113, 113, 0.2);
+}
+
+.computer-card[data-status="Offline"] .status-badge {
+    background: var(--accent-offline-dim);
+    color: var(--accent-offline);
+    border: 1px solid rgba(100, 116, 139, 0.2);
+}
+
+.status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+}
+.computer-card[data-status="Available"] .status-dot { background: var(--accent-available); box-shadow: 0 0 8px var(--accent-available); }
+.computer-card[data-status="In-Use"] .status-dot { background: var(--accent-inuse); }
+.computer-card[data-status="Offline"] .status-dot { background: var(--accent-offline); }
+
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: auto;
+}
+
+.last-seen {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.icon-sub {
+    font-size: 1rem;
+    color: var(--text-secondary);
+}
+
+.notify-btn {
+    background: transparent;
+    border: 1px solid var(--border-glass);
+    color: var(--text-primary);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-family: 'Outfit', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.notify-btn:hover {
+    background: var(--bg-glass);
+}
+
+/* Empty / Loading State */
+.state-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem 2rem;
+    gap: 1.5rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+.state-container p {
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid var(--border-glass);
+    border-top-color: var(--accent-available);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Animations using classes */
+.card-appear {
+    animation: fadeUp 0.5s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    opacity: 0;
+    transform: translateY(20px);
+}
+
+@keyframes fadeUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .glass-header {
+        border-radius: 0 0 24px 24px;
+        top: 0;
+        padding: 1rem 1.25rem;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+    }
+    
+    .stats-bar {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .app-container {
+        padding: 0 0 2rem 0;
+        gap: 1.5rem;
+    }
+    
+    .dashboard {
+        padding: 0 1.25rem;
+    }
+    
+    .computer-grid {
+        grid-template-columns: 1fr;
+    }
+}

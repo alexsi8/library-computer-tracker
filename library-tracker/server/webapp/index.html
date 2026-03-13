@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Library Computers Tracker</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <!-- Main Stylesheet -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Ionicons for beautiful SVGs -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Floating Header -->
+        <header class="glass-header">
+            <div class="header-content">
+                <div class="title-area">
+                    <h1>Library Tracker</h1>
+                    <span class="pulse-indicator">
+                        <span class="dot"></span> Live
+                    </span>
+                </div>
+                <button id="refresh-btn" class="icon-btn" aria-label="Refresh Status">
+                    <ion-icon name="refresh"></ion-icon>
+                </button>
+            </div>
+            
+            <div class="stats-bar">
+                <div class="stat-pill status-available">
+                    <span class="stat-num" id="stat-available">0</span> Available
+                </div>
+                <div class="stat-pill status-inuse">
+                    <span class="stat-num" id="stat-inuse">0</span> In Use
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Dashboard Dashboard -->
+        <main class="dashboard">
+            <div class="grid-header">
+                <h2>Computers</h2>
+                <div class="filter-controls">
+                    <select id="status-filter" class="glass-select">
+                        <option value="All">All</option>
+                        <option value="Available">Available</option>
+                        <option value="In-Use">In Use</option>
+                        <option value="Offline">Offline</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Empty State / Loading -->
+            <div id="loading-state" class="state-container">
+                <div class="spinner"></div>
+                <p>Syncing live statuses...</p>
+            </div>
+
+            <!-- Grid Matrix -->
+            <div class="computer-grid" id="computer-grid">
+                <!-- Javascript will inject cards here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Main Logic -->
+    <script src="app.js"></script>
+</body>
+</html>
