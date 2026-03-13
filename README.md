@@ -39,3 +39,33 @@ To use this in the real world so your phone can connect to it globally without n
 2. **Use a free cloud server (like Render, Heroku, or PythonAnywhere):** You can upload the `server` folder to one of these free online services. They *can* run Python scripts 24/7. Once that is set up, you just need to open the `client.py` file on your library computers and change line 8 from `SERVER_URL = "http://localhost:3000/api/heartbeat"` to whatever new permanent cloud link you get!
 
 Right now, running `start_global_tunnel.py` on your home computer (Option 1) is the quickest and easiest way to get it on your phone immediately! Let me know if you would like me to help you set up a cloud server instead!
+Don't worry, your work is safe! Here is exactly what happens when you close the chat, and exactly how you get it on your phone.
+
+### 1. What happens when you sign out of AntiGravity?
+The actual software files we built (`server.py`, `client.py`, the `index.html`, and `style.css`) are saved directly on your computer's hard drive at `C:\Users\user29\.gemini\antigravity\scratch\library-tracker`, and you also have the `.zip` file. **They are yours forever and will not be deleted when you sign out.**
+
+However, because I started the server for you in the background of this chat, **the live website will turn off** when you close the chat. 
+
+To turn it back on yourself after you leave this chat:
+1. Open the normal Windows Command Prompt (`cmd`) on your computer.
+2. Type `cd C:\Users\user29\.gemini\antigravity\scratch\library-tracker\server` and press Enter.
+3. Type `python server.py` and press Enter. 
+
+### 2. How to "Install" it on your Phone
+We built this as a "Progressive Web App" (PWA). This means you bypass the App Store completely! As long as your server and tunnel are running (giving you that `https://....localhost.run` link), here is the step-by-step for your phone:
+
+**If you have an iPhone:**
+1. Open the **Safari** app.
+2. Type your `https://....localhost.run` link into the address bar and go to the page.
+3. Tap the **Share** button at the very bottom of the screen (it looks like a square with an arrow pointing up).
+4. Scroll down the menu and tap **Add to Home Screen**.
+5. Tap **Add** in the top right corner.
+
+**If you have an Android:**
+1. Open the **Chrome** app.
+2. Type your `https://....localhost.run` link into the address bar and go to the page.
+3. Tap the **three dots** in the top-right corner of Chrome.
+4. Tap **Add to Home screen** (or "Install app").
+5. Tap **Add**.
+
+**The result:** Go look at your phone's home screen! You will see a brand new app icon there. When you tap it, it will open in full-screen (without the Safari/Chrome search bars) and it will look and feel exactly like a real app you downloaded from an app store!
